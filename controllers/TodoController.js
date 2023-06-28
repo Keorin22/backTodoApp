@@ -18,7 +18,8 @@ import Todo from '../models/Todo.js';
   }
 
   export const deletetodo = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.body;
+    console.log(id)
     try {
       await Todo.findOneAndDelete({ id });
       res.status(200).json({ msg: 'Todo deleted successfully' });

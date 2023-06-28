@@ -24,10 +24,10 @@ app.post('/auth/login', UserController.login)
 
 app.post('/auth/me', checkAuth, UserController.getMe)
 
-app.post('/todo/create', TodoController.createtodo)
-app.patch('/todo/status', TodoController.changeStatus)
-app.post('/todo/delete', checkAuth, TodoController.deletetodo)
-app.get('/todos',  TodoController.getAll)
+app.post('/todos/create', TodoController.createtodo)
+app.patch('/todos/status', TodoController.changeStatus)
+app.delete('/todos/delete', TodoController.deletetodo)
+app.get('/todos/tasks',  TodoController.getAll)
 
 // app.get('/posts',  PostController.getAll )
 // app.get('/posts/:id',  PostController.getOne )
