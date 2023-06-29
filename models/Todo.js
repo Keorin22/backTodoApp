@@ -10,9 +10,10 @@ const todoSchema = new mongoose.Schema({
     default: false
   },
   id: {
-    type: Number,
+    type: mongoose.Schema.ObjectId,
     required: true,
-    unique: true
+    unique: true,
+    default: mongoose.Types.ObjectId
   }
 });
 

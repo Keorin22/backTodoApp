@@ -4,7 +4,6 @@ import checkAuth from './utils/checkAuth.js'
 import * as auth from './Validations/auth.js'
 import { validationResult } from 'express-validator';
 import * as UserController from './controllers/UserController.js'
-import * as PostController from './controllers/PostController.js'
 import * as TodoController from './controllers/TodoController.js'
 import Todo from './models/Todo.js';
 import cors from 'cors';
@@ -26,14 +25,8 @@ app.post('/auth/me', checkAuth, UserController.getMe)
 
 app.post('/todos/create', TodoController.createtodo)
 app.patch('/todos/status', TodoController.changeStatus)
-app.delete('/todos/delete', TodoController.deletetodo)
+app.delete('/todos/delete/:id', TodoController.deletetodo)
 app.get('/todos/tasks',  TodoController.getAll)
-
-// app.get('/posts',  PostController.getAll )
-// app.get('/posts/:id',  PostController.getOne )
-// app.post('/posts', checkAuth, auth.postCreateValidation ,PostController.createPost )
-// app.delete('/posts/:id', checkAuth, PostController.remove )
-// app.patch('/posts',  PostController.update )
 
 app.listen(4444, (err) => {
     if(err) {

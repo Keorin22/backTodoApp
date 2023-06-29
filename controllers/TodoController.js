@@ -1,13 +1,15 @@
+import mongoose from 'mongoose';
 import Todo from '../models/Todo.js';
-
+import  Mongoose from 'mongoose';
 
   export const createtodo = async (req, res) => {
-    const { todo, id } = req.body;
-    // console.log(todo)
+    const { todo } = req.body;
+    console.log(req.body)
+    console.log(todo)
     try {
       const newTodo = new Todo({
         todo,
-        id,
+        id: mongoose.Types.ObjectId(),
         completed:false
       });
       await newTodo.save();
@@ -18,8 +20,9 @@ import Todo from '../models/Todo.js';
   }
 
   export const deletetodo = async (req, res) => {
-    const { id } = req.body;
+    const id = req.params.id;
     console.log(id)
+    console.log(req.body)
     try {
       await Todo.findOneAndDelete({ id });
       res.status(200).json({ msg: 'Todo deleted successfully' });
@@ -30,9 +33,11 @@ import Todo from '../models/Todo.js';
 
   export const changeStatus = async (req, res) => {
     const id= req.body.id;
-   console.log(id)
+    console.log(id)
+    
     try {
-      const todo = await Todo.findOne({ id });
+      const todo = await Todo.findOne({id});
+            
       if (!todo) {
         return res.status(404).json({ error: 'Todo not found' });
       }
