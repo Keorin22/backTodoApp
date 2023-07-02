@@ -7,7 +7,8 @@ import * as UserController from './controllers/UserController.js'
 import * as TodoController from './controllers/TodoController.js'
 import Todo from './models/Todo.js';
 import cors from 'cors';
-mongoose.connect ('mongodb://localhost:27017/Todo')
+
+mongoose.connect ('mongodb://127.0.0.1:27017/')
     .then( ()=> console.log('db OK'))
     .catch( (err)=> console.log('db error', err))
 
@@ -23,10 +24,10 @@ app.post('/auth/login', UserController.login)
 
 app.post('/auth/me', checkAuth, UserController.getMe)
 
-app.post('/todos/create', TodoController.createtodo)
-app.patch('/todos/status', TodoController.changeStatus)
-app.delete('/todos/delete/:id', TodoController.deletetodo)
-app.get('/todos/tasks',  TodoController.getAll)
+app.post('/todos/create', checkAuth, TodoController.createtodo)
+app.patch('/todos/status', checkAuth, TodoController.changeStatus)
+app.delete('/todos/delete/:id', checkAuth, TodoController.deletetodo)
+app.get('/todos/tasks',checkAuth, TodoController.getAll)
 
 app.listen(4444, (err) => {
     if(err) {

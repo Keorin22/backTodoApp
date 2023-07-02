@@ -4,7 +4,7 @@ import  Jwt  from "jsonwebtoken";
 
 export default (req, res, next) => {
     const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
-
+    // console.log(token)
     if(token){
         try{
             const decoded = Jwt.verify(token,'secret123')
