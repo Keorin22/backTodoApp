@@ -8,7 +8,7 @@ import * as TodoController from './controllers/TodoController.js'
 import Todo from './models/Todo.js';
 import cors from 'cors';
 
-mongoose.connect ('mongodb://127.0.0.1:27017/')
+mongoose.connect ('mongodb://127.0.0.1:27017/Todo')
     .then( ()=> console.log('db OK'))
     .catch( (err)=> console.log('db error', err))
 
